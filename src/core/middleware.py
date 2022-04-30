@@ -1,6 +1,5 @@
 from functools import partial
 
-from django.conf import settings
 from scrapy.http import Request
 from scrapy.spiders import Spider
 from twisted.python.failure import Failure
@@ -15,7 +14,3 @@ class ErrbackMiddleware(object):
         if not request.errback:
             request.errback = partial(errback, spider)
 
-
-class ProxyMiddleware(object):
-    def process_request(self, request: Request, **_):
-        request.meta["proxy"] = settings.PROXY
