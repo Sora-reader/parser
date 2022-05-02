@@ -1,4 +1,7 @@
+from os import environ
 import logging
+
+CELERYD_MAX_TASKS_PER_CHILD=1
 
 ROBOTSTXT_OBEY = True
 
@@ -12,3 +15,7 @@ AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
 
 LOG_ENABLED = 1
 LOG_LEVEL = logging.INFO
+
+#
+
+REDIS_URL = environ.get("REDIS_URL", "")

@@ -8,6 +8,8 @@ authors = ["dhvcc <1337kwiz@gmail.com>"]
 python = "^3.8"
 Scrapy = "^2.4.1"
 celery = "^5.2.0"
+redis = "^4.2.2"
+asgiref = "^3.5.1"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.8.4"

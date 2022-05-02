@@ -1,3 +1,5 @@
+from src.readmanga.pipelines import ReadmangaPipeline
+
 ROBOTSTXT_OBEY = True
 
 DOWNLOAD_DELAY = 2
@@ -10,16 +12,15 @@ AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
 
 
 BOT_NAME = "readmanga"
-SPIDER_MODULES = ["apps.parse.readmanga.list"]
-NEWSPIDER_MODULE = "apps.parse.readmanga"
+SPIDER_MODULES = ["src.readmanga.list"]
+NEWSPIDER_MODULE = "src.readmanga"
 
 DOWNLOADER_MIDDLEWARES = {
-    "apps.parse.scrapy.middleware.ErrbackMiddleware": 340,
-    "apps.parse.scrapy.middleware.ProxyMiddleware": 350,
+    "src.core.middleware.ErrbackMiddleware": 340,
     "scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware": 400,
 }
 ITEM_PIPELINES = {
-    # TODO: pipeline
+    ReadmangaPipeline: 100,
 }
 
 LOG_FILE = "parse-readmanga.log"
