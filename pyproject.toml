@@ -10,6 +10,8 @@ Scrapy = "^2.4.1"
 celery = "^5.2.0"
 redis = "^4.2.2"
 asgiref = "^3.5.1"
+python-dotenv = "^0.20.0"
+orjson = "^3.6.8"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.8.4"
