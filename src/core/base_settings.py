@@ -1,7 +1,9 @@
-from os import environ
 import logging
+from os import environ
 
-CELERYD_MAX_TASKS_PER_CHILD=1
+from dotenv import load_dotenv
+
+load_dotenv()
 
 ROBOTSTXT_OBEY = True
 

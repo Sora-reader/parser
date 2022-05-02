@@ -13,4 +13,3 @@ class ErrbackMiddleware(object):
     def process_request(self, request: Request, spider: Spider, **_):
         if not request.errback:
             request.errback = partial(errback, spider)
-
