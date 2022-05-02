@@ -1,4 +1,4 @@
-"""Run scrapy spiders as Celery tasks."""
+"""Celery tasks."""
 from celery import Task
 
 from src.celery import app
@@ -8,6 +8,7 @@ from src.core.utils import init_redis_client
 
 
 @app.task(name="crawl", bind=True)
+# TODO: remove default spider_klass
 def crawl(self: Task, spider_klass = QuotesSpider, *args, **kwargs):
     """
     Task to crawl a spider.
@@ -27,3 +28,4 @@ def crawl(self: Task, spider_klass = QuotesSpider, *args, **kwargs):
     res = redis_client.get(task_id)
     redis_client.delete(task_id)
     return res
+
