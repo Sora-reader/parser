@@ -1,3 +1,5 @@
+from redis import Redis
+
 from src.core.utils import init_redis_client
 
 
@@ -8,10 +10,19 @@ class WithRedisClient:
     Later used by pipelines.
     """
 
+    redis_client: Redis
+
     def __init__(self, *args, **kwargs):
         client = init_redis_client()
         kwargs["redis_client"] = client
         super().__init__(*args, **kwargs)
+
+
+class WithTaskID:
+    """Type class to add task_id attribute."""
+
+    task_id: str
+    "usually a UUID4 string which resembles celery task id."
 
 
 class InjectUrlMixin:
