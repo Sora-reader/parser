@@ -14,7 +14,7 @@ class WithRedisClient:
 
     def __init__(self, *args, **kwargs):
         client = init_redis_client()
-        kwargs["redis_client"] = client
+        self.redis_client = client
         super().__init__(*args, **kwargs)
 
 
@@ -23,6 +23,10 @@ class WithTaskID:
 
     task_id: str
     "usually a UUID4 string which resembles celery task id."
+
+    def __init__(self, *args, **kwargs):
+        self.task_id = kwargs.pop("task_id")
+        super().__init__(*args, **kwargs)
 
 
 class InjectUrlMixin:

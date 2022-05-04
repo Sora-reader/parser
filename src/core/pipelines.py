@@ -12,4 +12,6 @@ class RedisTaskIDPipeline:
 
     @staticmethod
     def process_item(item: Union[dict, list], spider):
+        from celery.contrib import rdb
+        rdb.set_trace()
         spider.redis_client.set(spider.task_id, dumps(item))

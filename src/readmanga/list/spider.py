@@ -4,9 +4,9 @@ from scrapy.http import HtmlResponse
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders.crawl import CrawlSpider, Rule
 
-from src.readmanga.list.utils import parse_rating
 from src.core.items import MangaItem
 from src.core.spider import InjectUrlMixin
+from src.readmanga.list.utils import parse_rating
 
 READMANGA_URL = "https://readmanga.io"
 LIST_URL = f"{READMANGA_URL}/list"
@@ -68,4 +68,3 @@ class ReadmangaListSpider(InjectUrlMixin, CrawlSpider):
 
         self.logger.info("===================")
         return mangas
-

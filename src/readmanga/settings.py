@@ -1,4 +1,4 @@
-from src.readmanga.pipelines import ReadmangaPipeline
+from src.core.pipelines import RedisTaskIDPipeline
 
 ROBOTSTXT_OBEY = True
 
@@ -20,8 +20,7 @@ DOWNLOADER_MIDDLEWARES = {
     "scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware": 400,
 }
 ITEM_PIPELINES = {
-    ReadmangaPipeline: 100,
+    RedisTaskIDPipeline: 100,
 }
 
 LOG_FILE = "parse-readmanga.log"
-
