@@ -24,6 +24,5 @@ def crawl(self: Task, spider_klass=QuotesSpider, *args, **kwargs):
     )
 
     redis_client = init_redis_client()
-    res = redis_client.get(task_id)
-    redis_client.delete(task_id)
+    res = redis_client.getdel(task_id)
     return res
