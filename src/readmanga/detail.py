@@ -44,4 +44,3 @@ class ReadmangaDetailSpider(InjectUrlMixin, scrapy.Spider):
                 }
             )
         ]
-
