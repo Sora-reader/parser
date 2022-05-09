@@ -1,8 +1,8 @@
 import scrapy
 from scrapy.http import HtmlResponse
 
-from src.core.items import MangaItem
-from src.core.spider import InjectUrlMixin
+from readmanga.items import MangaItem
+from src.readmanga.base import ReadmangaSpider
 
 RSS_TAG = "//head/link[@type='application/rss+xml'][1]/@href"
 AUTHORS_TAG = "//span[@class='elem_author ']/a[@class='person-link']/text()"
@@ -15,10 +15,8 @@ DESCRIPTION_TAG = "//meta[@itemprop='description'][1]/@content"
 STAR_RATING_TAG = "//span[@class='rating-block']/@data-score"
 
 
-class ReadmangaDetailSpider(InjectUrlMixin, scrapy.Spider):
-    name = "readmanga_detail"
-
-    def parse(self, response: HtmlResponse):
+class ReadmangaDetailSpider(ReadmangaSpider, scrapy.Spider):
+    def parse(self, response: HtmlResponse, **kwargs):
         year = response.xpath(YEAR_TAG).extract_first("")
         description = response.xpath(DESCRIPTION_TAG).extract_first("")
         rating = response.xpath(STAR_RATING_TAG).extract_first(0.0)

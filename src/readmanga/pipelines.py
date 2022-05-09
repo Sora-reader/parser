@@ -1,5 +1,5 @@
 from src.readmanga.images import ReadmangaImageSpider
-from src.readmanga.items import ImageList
+from src.readmanga.items import ChapterImageList
 
 
 class ReadmangaImagePipeline:
@@ -10,6 +10,6 @@ class ReadmangaImagePipeline:
     """
 
     @staticmethod
-    def process_item(item: ImageList, spider: ReadmangaImageSpider):
+    def process_item(item: ChapterImageList, spider: ReadmangaImageSpider):
         spider.redis_client.json().set(spider.start_urls[0], "$", item["images"])  # type: ignore
         return item["images"]

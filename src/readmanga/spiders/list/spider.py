@@ -4,11 +4,11 @@ from scrapy.http import HtmlResponse
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders.crawl import CrawlSpider, Rule
 
-from src.core.items import MangaItem
-from src.core.spider import InjectUrlMixin
-from src.readmanga.list.utils import parse_rating
+from readmanga.items import MangaItem
+from src import READMANGA_URL
+from src.core.spider import WithOptionalUrl
+from src.readmanga.spiders.list.utils import parse_rating
 
-READMANGA_URL = "https://readmanga.io"
 LIST_URL = f"{READMANGA_URL}/list"
 
 MANGA_TILE_TAG = '//div[@class = "tiles row"]//div[contains(@class, "tile col-md-6")]'
@@ -20,8 +20,7 @@ THUMBNAIL_IMG_URL_TAG = '//img[contains(@class, "lazy")][1]/@data-original'
 ALT_TITLE_URL = "//h4[@title]//text()"
 
 
-class ReadmangaListSpider(InjectUrlMixin, CrawlSpider):
-    name = "readmanga_list"
+class ReadmangaListSpider(WithOptionalUrl, CrawlSpider):
     start_urls = [LIST_URL]
     rules = [
         Rule(
@@ -37,7 +36,7 @@ class ReadmangaListSpider(InjectUrlMixin, CrawlSpider):
     def parse_start_url(self, response, **kwargs):
         return self.parse(response, **kwargs)
 
-    def parse(self, response):
+    def parse(self, response: HtmlResponse, **kwargs):
         mangas: List[MangaItem] = []
         descriptions = response.xpath(MANGA_TILE_TAG).extract()
         for description in descriptions:
