@@ -12,7 +12,7 @@ AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
 
 
 BOT_NAME = "readmanga"
-SPIDER_MODULES = ["src.readmanga.list"]
+SPIDER_MODULES = ["src.readmanga.spiders"]
 NEWSPIDER_MODULE = "src.readmanga"
 
 DOWNLOADER_MIDDLEWARES = {

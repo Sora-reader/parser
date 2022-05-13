@@ -2,8 +2,8 @@
 from abc import ABC, abstractmethod
 from typing import List, Union
 
-from readmanga.items import MangaItem
 from src.core.spider import AutoNameMixin, WithOptionalUrl, WithRedisClient, WithTaskID
+from src.readmanga.items import MangaItem
 
 
 class ReadmangaSpider(ABC, AutoNameMixin, WithTaskID, WithRedisClient, WithOptionalUrl):

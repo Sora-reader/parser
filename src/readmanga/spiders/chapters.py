@@ -4,8 +4,8 @@ from typing import List
 import scrapy
 from scrapy.http import XmlResponse
 
-from readmanga.items import ChapterItem
 from src.readmanga.base import ReadmangaSpider
+from src.readmanga.items import ChapterItem
 
 ITEM_TAG = "//item"
 LINK_TAG = 'guid[@isPermaLink="true"]/text()'
